@@ -5,11 +5,19 @@ import { useStepControl } from 'src/hooks/useSteps';
 import useStepForm from 'src/hooks/useStepForm';
 import { FormEvent } from 'react';
 import useSWR from 'swr';
+import { useNavigate } from 'react-router-dom';
+
+const url = 'https://id.safav2.io.safavisa.com/register';
 
 const ConfirmForm = () => {
+  const navigate = useNavigate();
+  const fetcher = (url: string) =>
+    fetch(url, { method: 'post' }).then(res => res.json());
+
   const { goToStep } = useStepControl();
   const { formData } = useStepForm();
-  const {} = useSWR()
+  const { mutate } = useSWR(url, fetcher);
+  
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const form = new FormData();
@@ -24,6 +32,9 @@ const ConfirmForm = () => {
         form.append(key, collectData[key]);
       }
     }
+    mutate(form).then(() => {
+      navigate('/success');
+    });
   };
 
   return (

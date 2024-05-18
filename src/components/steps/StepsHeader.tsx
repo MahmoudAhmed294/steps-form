@@ -22,7 +22,7 @@ const steps: Step[] = [
 ];
 
 const StepsHeader: React.FC = () => {
-  const { currentStep, goToStep } = useStepControl();
+  const { currentStep } = useStepControl();
 
   return (
     <div className='steps'>
@@ -32,7 +32,6 @@ const StepsHeader: React.FC = () => {
         <div
           key={index}
           className={`icon cursor-pointer ${currentStep === index ? 'current' : currentStep > index && 'done'}`}
-          onClick={() => goToStep(index)}
         >
           {step.icon && <step.icon />}
         </div>
