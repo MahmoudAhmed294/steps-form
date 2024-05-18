@@ -7,7 +7,7 @@ function ProgressProvider({ children }: { children: React.ReactNode }) {
     formData: {
       0: undefined,
       1: undefined,
-      2: {},
+      2: undefined,
     },
   });
 

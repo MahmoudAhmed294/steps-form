@@ -59,8 +59,7 @@ const Index = () => {
         message: 'Passwords do not match',
       });
     }
-    if (isValid) {
-      console.log(data);
+    else if (isValid) {
       updateFormData(0, data);
       goToStep(1);
     }

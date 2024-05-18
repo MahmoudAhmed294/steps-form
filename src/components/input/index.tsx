@@ -45,6 +45,7 @@ const Input = ({
                 <button
                   className='mr-4'
                   onClick={() => setIsVisible(prev => !prev)}
+                  type='button'
                 >
                   {isVisible ? (
                     <VisibilityOffIcon sx={{ fill: '#777' }} />

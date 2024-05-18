@@ -17,7 +17,7 @@ const ConfirmForm = () => {
   const { goToStep } = useStepControl();
   const { formData } = useStepForm();
   const { mutate } = useSWR(url, fetcher);
-  
+
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const form = new FormData();
@@ -55,7 +55,7 @@ const ConfirmForm = () => {
           <button
             className='btn bg-gray-300'
             type='button'
-            onClick={() => goToStep(0)}
+            onClick={() => goToStep(2)}
           >
             back
           </button>

@@ -33,7 +33,7 @@ const schema = z
     company_avatar: true,
   });
 
-export type ValidationAddressSchemaType = z.infer<typeof schema>;
+export type ValidationUploadImageSchemaType = z.infer<typeof schema>;
 
 const Index = () => {
   const { goToStep } = useStepControl();
@@ -46,6 +46,7 @@ const Index = () => {
         // @ts-expect-error type unknown
         setValue(key, formData[2][key]);
       }
+      setSelectedImage(URL.createObjectURL(formData[2].company_avatar[0]));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [formData]);
@@ -56,7 +57,7 @@ const Index = () => {
     setValue,
     watch,
     formState: { errors, isValid },
-  } = useForm<ValidationAddressSchemaType>({
+  } = useForm<ValidationUploadImageSchemaType>({
     resolver: zodResolver(schema),
   });
 
@@ -69,7 +70,7 @@ const Index = () => {
     return () => subscription.unsubscribe();
   }, [watch]);
 
-  const saveCompanyLogo = (data: ValidationAddressSchemaType) => {
+  const saveCompanyLogo = (data: ValidationUploadImageSchemaType) => {
     console.log(data);
 
     if (isValid) {
@@ -134,7 +135,7 @@ const Index = () => {
           <button
             className='btn bg-gray-300'
             type='button'
-            onClick={() => goToStep(0)}
+            onClick={() => goToStep(1)}
           >
             back
           </button>
