@@ -16,10 +16,10 @@ const schema = z
     user_password_confirmation: z.string().min(8).max(32),
     user_full_name: z.string().min(3).max(100).trim(),
     user_phone: z.string().min(11).max(11).trim(),
-    user_country: z.string().trim().min(1, 'please select country'),
+    user_nationality: z.string().trim().min(1, 'please select country'),
   })
   .required({
-    user_country: true,
+    user_nationality: true,
     user_full_name: true,
     user_phone: true,
     user_password_confirmation: true,
@@ -34,14 +34,19 @@ const Index = () => {
   const { updateFormData, formData } = useStepForm();
   useEffect(() => {
     if (formData[0]) {
-      console.log(formData[0]);
+      for (const key in formData[0]) {
+        // @ts-expect-error type unknown
+        setValue(key, formData[0][key]);
+      }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [formData]);
 
   const {
     register,
     handleSubmit,
     watch,
+    setValue,
     formState: { errors, isValid },
     setError,
   } = useForm<ValidationSchemaType>({
@@ -88,22 +93,22 @@ const Index = () => {
           <Grid item xs={12} lg={6}>
             <Select
               label='Country'
-              errorMessage={errors?.user_country?.message}
+              errorMessage={errors?.user_nationality?.message}
               selectProps={{
-                ...register('user_country'),
+                ...register('user_nationality'),
               }}
               placeholder='choose your country'
               listOption={[
                 {
-                  key: 'egypt',
+                  id: 20,
                   label: 'Egypt',
                 },
                 {
-                  key: 'japan',
+                  id: 10,
                   label: 'Japan',
                 },
                 {
-                  key: 'yemen',
+                  id: 30,
                   label: 'Yemen',
                 },
               ]}
@@ -153,14 +158,17 @@ const Index = () => {
         <Grid item xs={6} lg={4}>
           <button
             className='flex items-center justify-center text-[#333]'
-            type='submit'
+            type='button'
+            disabled
           >
             <ArrowLeftIcon sx={{ fill: '#333' }} />
             <span>back to login</span>
           </button>
         </Grid>
         <Grid item xs={6} lg={2}>
-          <button className='btn btn-primary'>next</button>
+          <button className='btn btn-primary' type='submit'>
+            next
+          </button>
         </Grid>
       </Grid>
     </form>

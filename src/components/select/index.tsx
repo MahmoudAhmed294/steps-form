@@ -10,7 +10,7 @@ interface IProps {
     HTMLSelectElement
   >;
   placeholder: string;
-  listOption: { key: string; label: string }[];
+  listOption: { id: number; label: string }[];
 }
 
 const Select = ({
@@ -32,7 +32,7 @@ const Select = ({
                 {placeholder}
               </option>
               {listOption.map(value => (
-                <option key={value.key} value={value.key}>
+                <option key={value.id} value={value.id}>
                   {value.label}
                 </option>
               ))}
