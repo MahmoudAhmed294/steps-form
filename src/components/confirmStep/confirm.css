@@ -1,0 +1,17 @@
+.confirmForm {
+  text-align: center;
+}
+
+.confirmForm img {
+  margin: auto;
+  display: block;
+  width: 200px;
+}
+
+.confirmForm p:nth-child(2) {
+  color: #ff5f59;
+}
+
+.confirmForm p {
+  font-size: 20px;
+}

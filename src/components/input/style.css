@@ -1,0 +1,26 @@
+.input {
+  @apply flex  overflow-hidden rounded-md border border-gray-300 bg-white pr-2;
+}
+.input .left {
+  @apply flex h-[65px] items-center justify-center border-r border-gray-300 px-3;
+}
+.input label {
+  @apply ml-4 bg-white text-xs font-bold uppercase;
+}
+
+.input input,
+.input select {
+  @apply w-full border-none px-4 py-2  text-sm focus:outline-none;
+}
+
+.input.error {
+  @apply border-red-500;
+}
+
+.input.error label {
+  @apply text-red-500;
+}
+
+.input.select {
+  @apply py-3;
+}

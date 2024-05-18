@@ -1,0 +1,35 @@
+.steps {
+  @apply relative z-10 mb-8 flex justify-between;
+}
+
+.steps .progress {
+  @apply absolute top-1/2 z-[-1] h-6 w-full  translate-y-[-50%] transform overflow-hidden rounded-full  border-8 border-white bg-gray-200;
+}
+
+.steps .progress::before {
+  @apply absolute h-full w-0 bg-blue-600 transition duration-500;
+}
+
+.steps .progress[progress='1']::before {
+  @apply w-1/3;
+}
+
+.steps .progress[progress='2']::before {
+  @apply w-2/3;
+}
+
+.steps .progress[progress='3']::before {
+  @apply w-full;
+}
+
+.steps .icon {
+  @apply flex h-10 w-10 items-center justify-center rounded-full bg-white text-gray-400 transition duration-500;
+}
+
+.steps .icon.current {
+  @apply border border-red-500 text-red-500;
+}
+
+.steps .icon.done {
+  @apply border border-blue-600 text-blue-600;
+}
