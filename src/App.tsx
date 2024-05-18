@@ -1,17 +1,15 @@
-import { Grid } from '@mui/material';
-import Steps from 'src/components/steps';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import StepperPage from 'src/components/stepperPage';
+import Success from 'src/components/succsess';
 
 function App() {
   return (
-    <div className=' container mx-auto flex h-full items-center justify-center p-8'>
-      <Grid container justifyContent={'center'}>
-        <Grid item xs={12} lg={8}>
-          <div className=' h-full w-full'>
-            <Steps />
-          </div>
-        </Grid>
-      </Grid>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route element={<StepperPage />} path='/' />
+        <Route element={<Success />} path='/success' />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
