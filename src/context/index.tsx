@@ -6,7 +6,7 @@ function ProgressProvider({ children }: { children: React.ReactNode }) {
   const [stepState, setStepState] = useState<Pick<IContextValue, 'formData'>>({
     formData: {
       0: undefined,
-      1: {},
+      1: undefined,
       2: {},
     },
   });
@@ -19,8 +19,6 @@ function ProgressProvider({ children }: { children: React.ReactNode }) {
     step: number,
     data: Pick<IContextValue, 'formData'>,
   ) => {
-    console.log(data);
-
     setStepState(prevState => ({
       ...prevState,
       formData: {

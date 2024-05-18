@@ -1,11 +1,12 @@
 import { createContext } from 'react';
-import {ValidationSchemaType} from 'src/components/signUpStep'
+import { ValidationAddressSchemaType } from 'src/components/addressStep';
+import { ValidationSchemaType } from 'src/components/signUpStep';
 export interface IContextValue {
   currentStep: number;
   setCurrentStep: (newProgress: number) => void;
   formData: {
     0: ValidationSchemaType | undefined;
-    1: Record<string, string>;
+    1: ValidationAddressSchemaType | undefined;
     2: Record<string, string>;
   };
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -17,7 +18,7 @@ export const StateContext = createContext<IContextValue>({
   setCurrentStep: () => {},
   formData: {
     0: undefined,
-    1: {},
+    1: undefined,
     2: {},
   },
   updateFormData: () => {},

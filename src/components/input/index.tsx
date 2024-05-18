@@ -12,6 +12,7 @@ interface IProps {
     HTMLInputElement
   >;
   left?: string | React.ReactNode;
+  right?: string | React.ReactNode;
 }
 
 const Input = ({
@@ -20,6 +21,7 @@ const Input = ({
   errorMessage,
   inputProps,
   left,
+  right,
 }: IProps) => {
   const [isVisible, setIsVisible] = useState(false);
 
@@ -29,26 +31,31 @@ const Input = ({
         className={`input ${left ? 'flex-row' : 'flex-col'} ${errorMessage ? 'error' : ''} `}
       >
         {left && <div className='left'>{left}</div>}
-        <div className='flex flex-col pt-3'>
-          <label htmlFor={inputProps?.id}>{label}</label>
-          <div className='flex items-center justify-between'>
-            <input
-              {...inputProps}
-              type={isVisible ? 'text' : inputProps?.type}
-            />
-            {inputProps?.type === 'password' && (
-              <button
-                className='mr-4'
-                onClick={() => setIsVisible(prev => !prev)}
-              >
-                {isVisible ? (
-                  <VisibilityOffIcon sx={{ fill: '#777' }} />
-                ) : (
-                  <VisibilityIcon sx={{ fill: '#777' }} />
-                )}
-              </button>
-            )}
+        <div className='flex items-center justify-between'>
+          <div className='flex w-full flex-col pt-3'>
+            <label htmlFor={inputProps?.id} className='w-fit'>
+              {label}
+            </label>
+            <div className='flex items-center justify-between'>
+              <input
+                {...inputProps}
+                type={isVisible ? 'text' : inputProps?.type}
+              />
+              {inputProps?.type === 'password' && (
+                <button
+                  className='mr-4'
+                  onClick={() => setIsVisible(prev => !prev)}
+                >
+                  {isVisible ? (
+                    <VisibilityOffIcon sx={{ fill: '#777' }} />
+                  ) : (
+                    <VisibilityIcon sx={{ fill: '#777' }} />
+                  )}
+                </button>
+              )}
+            </div>
           </div>
+          {right && <div className='w-2/12 border-l'>{right}</div>}
         </div>
       </div>
       {errorMessage && (
